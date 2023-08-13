@@ -10,7 +10,13 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(cors());
-
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', process.env.FRONT_END_HOME_URL);
+  res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 // Set up API endpoints
 app.get("/api/metrics", (req, res) => {
   try {
