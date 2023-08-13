@@ -1,10 +1,15 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const cors = require("cors");
+const helmet = require("helmet");
 const fs = require("fs");
 const { spawn } = require("child_process");
 
 app.use(bodyParser.json());
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(cors());
 
 // Set up API endpoints
 app.get("/api/metrics", (req, res) => {
