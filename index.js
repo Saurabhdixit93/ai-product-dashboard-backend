@@ -110,7 +110,12 @@ function generatePredictions(callback) {
     callback(newPredictions);
   });
 }
-
+app.get("/",(req,res) =>{
+  return res.json({
+    message:"Site Running",
+    success: true,
+  })
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
